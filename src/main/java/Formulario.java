@@ -193,7 +193,7 @@ public class Formulario extends javax.swing.JFrame {
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 80));
 
         Motivos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Motivos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Motivos --", "Traumatologia", "Accidente", "Estomatologia", "Consulta médico de cabecera", "Otro" }));
+        Motivos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Motivos --", "Traumatologia", "Estomatologia", "Consulta médico de cabecera", " " }));
         jPanel3.add(Motivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, -1, -1));
 
         CodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -210,7 +210,7 @@ public class Formulario extends javax.swing.JFrame {
                 Formulario.this.keyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                NoNum(evt);
+                NoLetras(evt);
             }
         });
         jPanel3.add(CodigoPostal, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 310, -1));
@@ -282,11 +282,6 @@ public class Formulario extends javax.swing.JFrame {
         Causas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CausasMouseClicked(evt);
-            }
-        });
-        Causas.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                NoNum(evt);
             }
         });
         jScrollPane1.setViewportView(Causas);
@@ -547,15 +542,12 @@ public class Formulario extends javax.swing.JFrame {
                     Traumatologia t = new Traumatologia();
                     t.setVisible(true);
                     this.setVisible(false);
-                } else if (Motivos.getSelectedItem().equals("Accidente")) {
-                    JOptionPane.showMessageDialog(this, "Datos guardados en el archivo.");
-                    JOptionPane.showMessageDialog(this, "Cargando formulario");
                 } else if (Motivos.getSelectedItem().equals("Estomatologia")) {
                     JOptionPane.showMessageDialog(this, "Datos guardados en el archivo.");
                     JOptionPane.showMessageDialog(this, "Cargando formulario");
-                } else if (Motivos.getSelectedItem().equals("Otro")) {
-                    JOptionPane.showMessageDialog(this, "Datos guardados en el archivo.");
-                    JOptionPane.showMessageDialog(this, "Cargando formulario");
+                    Estomatologia e = new Estomatologia();
+                    e.setVisible(true);
+                    this.setVisible(false);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -621,6 +613,16 @@ public class Formulario extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_NoLetrasTelefono
+
+    private void NoLetras(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoLetras
+       int key = evt.getKeyChar();
+
+        boolean numeros = key >= 48 && key <= 57;
+
+        if (!numeros) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_NoLetras
 
     /**
      * @param args the command line arguments
