@@ -48,7 +48,6 @@ public class Formulario extends javax.swing.JFrame {
                     Telefono.setText(tokens[4]);
                     Fecha.setText(tokens[5]);
                     CodigoPostal.setText(tokens[6]);
-                    Causas.setText(tokens[7]);
                 }
             } else {
                 System.out.println("El archivo está vacío.");
@@ -277,12 +276,13 @@ public class Formulario extends javax.swing.JFrame {
 
         Causas.setColumns(20);
         Causas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Causas.setForeground(new java.awt.Color(204, 204, 204));
         Causas.setRows(5);
-        Causas.setText("Ponga aqui sus causas");
         Causas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CausasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                CausasMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(Causas);
@@ -504,6 +504,7 @@ public class Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_NombreActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.out.println(Causas.getText());
         int contador = 0;
         JTextField[] cuadros = {Nombre, Telefono, Provincia, Direccion, CodigoPostal, Fecha};
         System.out.println(cuadros.length);
@@ -513,7 +514,7 @@ public class Formulario extends javax.swing.JFrame {
                 contador++;
             }
         }
-        if (Causas.getText().equals("") || Causas.getText().substring(0, 4).equals("Pong")) {
+        if (Causas.getText().equals("")) {
             Causas.setBackground(Color.red);
             contador++;
         }
@@ -577,17 +578,6 @@ public class Formulario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_FechaMousePressed
 
-    private void CausasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CausasMouseClicked
-        if (Causas.getText().equals("Ponga aqui sus causas")) {
-            Causas.setText("");
-            Causas.setForeground(Color.black);
-            Causas.setBackground(Color.white);
-        } else {
-            Causas.setForeground(Color.black);
-            Causas.setBackground(Color.white);
-        }
-    }//GEN-LAST:event_CausasMouseClicked
-
     private void SexoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SexoMouseClicked
         Sexo.setBackground(Color.white);
     }//GEN-LAST:event_SexoMouseClicked
@@ -629,6 +619,14 @@ public class Formulario extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_NoLetras
+
+    private void CausasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CausasMouseClicked
+        Causas.setBackground(Color.white);
+    }//GEN-LAST:event_CausasMouseClicked
+
+    private void CausasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CausasMouseEntered
+        Causas.setBackground(Color.white);
+    }//GEN-LAST:event_CausasMouseEntered
 
     /**
      * @param args the command line arguments

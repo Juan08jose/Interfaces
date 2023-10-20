@@ -369,7 +369,7 @@ public class MedicoCabecera extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, 260, 140));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 280, 140));
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -664,7 +664,7 @@ public class MedicoCabecera extends javax.swing.JFrame {
         jTextArea7.setRows(5);
         jScrollPane8.setViewportView(jTextArea7);
 
-        jPanel7.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 950, 170));
+        jPanel7.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 950, 170));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         jLabel19.setText("Estudios de imagen");
