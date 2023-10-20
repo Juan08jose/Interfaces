@@ -48,6 +48,7 @@ public class Formulario extends javax.swing.JFrame {
                     Telefono.setText(tokens[4]);
                     Fecha.setText(tokens[5]);
                     CodigoPostal.setText(tokens[6]);
+                    Causas.setText(tokens[7]);
                 }
             } else {
                 System.out.println("El archivo está vacío.");
@@ -193,7 +194,7 @@ public class Formulario extends javax.swing.JFrame {
         jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 80));
 
         Motivos.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        Motivos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Motivos --", "Traumatologia", "Estomatologia", "Consulta médico de cabecera", " " }));
+        Motivos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Motivos --", "Traumatologia", "Estomatologia", "Consulta médico de cabecera" }));
         jPanel3.add(Motivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, -1, -1));
 
         CodigoPostal.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -507,15 +508,14 @@ public class Formulario extends javax.swing.JFrame {
         JTextField[] cuadros = {Nombre, Telefono, Provincia, Direccion, CodigoPostal, Fecha};
         System.out.println(cuadros.length);
         for (int i = 0; i < cuadros.length; i++) {
-            if (cuadros[i].getText().equals("") || cuadros[i].getText().substring(0, 5).equals("Ponga")) {
+            if (cuadros[i].getText().equals("") || cuadros[i].getText().substring(0, 4).equals("Pong")) {
                 cuadros[i].setBackground(Color.red);
                 contador++;
             }
-            if (Causas.getText().equals("") || Causas.getText().substring(0, 5).equals("Ponga")) {
-                Causas.setBackground(Color.red);
-                contador++;
-            }
-
+        }
+        if (Causas.getText().equals("") || Causas.getText().substring(0, 4).equals("Pong")) {
+            Causas.setBackground(Color.red);
+            contador++;
         }
         if (contador > 0) {
             JOptionPane.showMessageDialog(this, "Rellene los campos faltantes");
@@ -547,6 +547,12 @@ public class Formulario extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Cargando formulario");
                     Estomatologia e = new Estomatologia();
                     e.setVisible(true);
+                    this.setVisible(false);
+                } else if (Motivos.getSelectedItem().equals("Consulta médico de cabecera")) {
+                    JOptionPane.showMessageDialog(this, "Datos guardados en el archivo.");
+                    JOptionPane.showMessageDialog(this, "Cargando formulario");
+                    MedicoCabecera m = new MedicoCabecera();
+                    m.setVisible(true);
                     this.setVisible(false);
                 }
             } catch (IOException e) {
@@ -615,7 +621,7 @@ public class Formulario extends javax.swing.JFrame {
     }//GEN-LAST:event_NoLetrasTelefono
 
     private void NoLetras(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_NoLetras
-       int key = evt.getKeyChar();
+        int key = evt.getKeyChar();
 
         boolean numeros = key >= 48 && key <= 57;
 

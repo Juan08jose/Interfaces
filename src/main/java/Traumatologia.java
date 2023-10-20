@@ -34,7 +34,6 @@ public class Traumatologia extends javax.swing.JFrame {
             //Pilla la primera linea del archivo
             BufferedReader br = new BufferedReader(new FileReader("src/Pacientes.txt"));
             String linea = br.readLine();
-            System.out.println(linea + " adios");
             //Aqui comprueba si es null
             if (linea != null) {
                 linea = linea.trim(); // Elimina espacios en blanco alrededor del texto

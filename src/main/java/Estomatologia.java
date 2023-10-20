@@ -1,5 +1,9 @@
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,20 +26,50 @@ public class Estomatologia extends javax.swing.JFrame {
         LocalDateTime d = LocalDateTime.now();
         FechaActual.setText(d.getDayOfMonth() + "/" + d.getMonthValue() + "/" + d.getYear() + "   " + d.getHour() + ":" + d.getMinute() + ":" + d.getSecond());
         FechaActual.setEnabled(false);
-        desactivar();
+        cargar();
     }
 
-    public void desactivar() {
-        jScrollPane10.setVisible(false);
-        jScrollPane7.setVisible(false);
-        jScrollPane8.setVisible(false);
-        Nombretext.setEnabled(false);
-        Nombretext1.setEnabled(false);
-        FechaNacText.setEnabled(false);
-        Motivos.setEnabled(false);
-        GeneroText.setEnabled(false);
-        DireccionText.setEnabled(false);
-        NumeroTlfnText.setEnabled(false);
+    public void cargar() {
+        try {
+            //Pilla la primera linea del archivo
+            BufferedReader br = new BufferedReader(new FileReader("src/Pacientes.txt"));
+            String linea = br.readLine();
+            //Aqui comprueba si es null
+            if (linea != null) {
+                linea = linea.trim(); // Elimina espacios en blanco alrededor del texto
+                //Divide la linea
+                String[] tokens = linea.split("/");
+                //Comprueba si la longitud del array es mayor que 0 para comprobar si existe alguna division
+                if (tokens.length > 0) {
+                    Nombretext.setText(tokens[0]);
+                    Nombretext1.setText(tokens[0]);
+                    DireccionText.setText(tokens[1]);
+                    GeneroText.setText(tokens[2]);
+                    NumeroTlfnText.setText(tokens[4]);
+                    FechaNacText.setText(tokens[5]);
+                    Motivos.setText(tokens[7]);
+                }
+                //Aqui es el caso que linea sea null
+            } else {
+                System.out.println("El archivo está vacío.");
+            }
+            FechaActual.setEnabled(false);
+            Nombretext.setEnabled(false);
+            Nombretext1.setEnabled(false);
+            DireccionText.setEnabled(false);
+            FechaNacText.setEnabled(false);
+            GeneroText.setEnabled(false);
+            NumeroTlfnText.setEnabled(false);
+            Motivos.setEnabled(false);
+            jScrollPane10.setVisible(false);
+            jScrollPane7.setVisible(false);
+            jScrollPane8.setVisible(false);
+            br.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("El archivo no se encontró: " + e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
+        }
     }
 
     /**
